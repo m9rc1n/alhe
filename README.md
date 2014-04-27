@@ -38,7 +38,7 @@ Unimodalna sferyczna jedno minimum - to strategia kiedy poruszamy się po najwi�
 ![Funkcja sferyczna][1]
 ### Funkcja "eggholder"
 Eggholder - biedny punkcik trafi w dół lejka i stamtąd nie wyjdzie
-![Funkcja "eggholder"][1]
+![Funkcja "eggholder"][2]
 
 
 
@@ -55,8 +55,8 @@ Roboczo budźet - liczba iteracji - nie. maksymalna liczba obliczeń funkcji cel
 
 jedna populacyjna, druga jest jednym punktem. 
 
-[1] sphere_function.jpg "Funkcja sferyczna"
-[2] eggholder_function.jpg "Funkcja eggholder"
+[1]: sphere_function.jpg "Funkcja sferyczna"
+[2]: eggholder_function.jpg "Funkcja eggholder"
 
 
 
