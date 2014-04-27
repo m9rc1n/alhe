@@ -33,21 +33,23 @@ Rozkład jednostajny - poczakajmy odpowiednio długo, punkty w losowy w miarę r
 Funkcje celu:
 -------------
 Jak mamy dwie kompletnie odmienne funkcje celu to te dwie metody będą mniej lub bardziej skuteczne.
+
 ### Funkcja sferyczna
 Unimodalna sferyczna jedno minimum - to strategia kiedy poruszamy się po największym zboczu jest najbardziej skuteczna, najbardziej goni do celu. 
+
 ![Funkcja sferyczna][1]
+![Minimum funkcji sferycznej][2]
+![Dziedzina funkcji sferycznej][3]
+![Formuła funkcji sferycznej][4]
+
 ### Funkcja "eggholder"
 Eggholder - biedny punkcik trafi w dół lejka i stamtąd nie wyjdzie
-![Funkcja "eggholder"][2]
 
-
-
-
-
-
-
-
-
+![Funkcja eggholder][5]
+![Minimum funkcji eggholder][6]
+![Dziedzina funkcji eggholder][7]
+![Formuła funkcji eggholder][8]
+![Funkcja eggholder w realnym świecie][9]
 
 Wnioski. To jest cały projekt. Patrząc na wykresy można sobie uzmysłowić, że algorytm ewolucyjny widać mutacje populacja skacze.
 
@@ -56,8 +58,12 @@ Roboczo budźet - liczba iteracji - nie. maksymalna liczba obliczeń funkcji cel
 jedna populacyjna, druga jest jednym punktem. 
 
 [1]: sphere_function.jpg "Funkcja sferyczna"
-[2]: eggholder_function.jpg "Funkcja eggholder"
+[2]: sphere_minimum.png "Minimum funkcji sferycznej"
+[3]: sphere_domain.png "Dziedzina funkcji sferycznej"
+[4]: sphere_formula.png "Formuła funkcji sferycznej"
 
-
-
-
+[5]: eggholder_function.jpg "Funkcja eggholder"
+[6]: eggholder_minimum.png "Minimum funkcji eggholder"
+[7]: eggholder_domain.png "Dziedzina funkcji eggholder"
+[8]: eggholder_formula.png "Formuła funkcji eggholder"
+[9]: eggholder_real.jpg "Funkcja eggholder w realnym świecie"
