@@ -9,53 +9,81 @@ Treść zadania:
 W ramach projektu należy przygotować implementacje dwóch metaheurystyk (zgodnie z szablonem metody przedstawionym na wykładzie) oraz porównać ich działanie. 
 
 W ramach porównania należy:
-x rozwiązać dwuwymiarowe zadanie optymalizacji funkcji sferycznej (oraz przeanalizować wyniki)
-x rozwiązać dwuwymiarowe zadanie optymalizacji funkcji określonej w zestawie (oraz przeanalizować wyniki)
-przygotować wizualizację (np. w formie adekwatnego wykresu) pokazującą jakie punkty generowane są w trakcie działania każdej z metod
+
+  - rozwiązać dwuwymiarowe zadanie optymalizacji funkcji sferycznej (oraz przeanalizować wyniki)
+  - rozwiązać dwuwymiarowe zadanie optymalizacji funkcji określonej w zestawie (oraz przeanalizować wyniki)
+  - przygotować wizualizację (np. w formie adekwatnego wykresu) pokazującą jakie punkty generowane są w trakcie działania każdej z metod
 
 Nasza interpretecja treści zadania
 ----------------------------------
 
-Założeniem projektu jest zobaczenie jak działają metody heurystyczne w praktyce. W ramach projektu dostaliśmy dwa algorytmy, które musimy zbadać na dwóch funkcjach celu. Funkcje celu będą dwuwymiarowe po to, żebyśmy mogli zobaczyć jak się algorytm porusza po takiej powierzchni. Prawdziwe benchmarki rozwiązują zadanie optymalizacji w stu wymiarach. 
-Zaimplementować te dwie metody. Na dwóch funkcjach celu zrobić wizualizację jak się poruszają te punkty w dwóch wymiarach. 
-Zobaczyć jak różnią się w swoim zachowaniu te metody. Przygotować wizualizację, wykres animację. Porównać z tymi dwiema funkcjami. 
+Założeniem projektu jest zbadanie jak działają metody heurystyczne w praktyce. W ramach projektu otrzymaliśmy dwa algorytmy, które musimy przeanalizować korzystając z dwóch funkcji celu. Zarówno algorytmy jak i funkcje zostały opisane poniżej. Funkcje celu będą się korzystały z dwóch wymiarów, abyśmy mogli zobaczyć jak się zaimplementowane przez nas metody zachowują na takiej powierzchni. Wizualizację sporządzimy jako wykres lub animację. Posłuży ona nam do przeanalizowania algorytmów i sprawdzenia jak sobie radzą z odmiennymi w działaniu funkcjami celu oraz będzie pomocna w opracowanu wniosków. 
 
 Metody:
 -------
-### Algorytm ewolucyjny
 
-Algorytm ewoucyjny populacją, która sobie ewoluuje i skacze. 
+Pierwsza z tych metod jest metodą populacyjną, natomiast druga jednopunktową. Ma to znaczenie przy określaniu Roboczo-budżetu, ponieważ w naszym przypadku nie możemy posłużyć się przy jego określaniu liczbą iteracji, ze względu na populację algorytmu ewolucyjnego. Zamiast tego użyjemy liczby obliczeń funkcji celu oraz dokładności bądź błędu minimalizacji (lub maksymalizacji). Budżet otrzymujemy uruchamiając k-razy każdą z metod. Powinnien on generować lepsze rezultaty przy większej liczbie k.
+
+### Algorytm ewolucyjny
+Algorytm ewolucyjny jest metodą, której protoplastą jest wariant pośredni pomiędzy stochastycznym algorytmem wspinaczkowym oraz nieklasycznym błądzeniem przypadkowym, dlatego podejrzewamy, że w jego przypadku lepsze rezultaty będą w połączeniu z sferyczną funkcją celu. Implementacja i wizualizacja pozwoli nam sprawdzić nasze przypuszczenia.
+
+Algorytm ewolucyjny (z sukcesją nieelitarną) jest metodą:
+
+  - poinformowaną
+  - niedeterministyczną
+  - o modelu pamięciowym (wielkość modelu >= 1)
+  - której lokalność zależy od mutacji
+  - której miękkość selekcji zależy od jej typu
+  - o rozmiarze okna historii nieskończonym
+  - zupełności asymptotycznej (lub brak)
+  
+Aby zaimplementować algorytm ewolucyjny musimy wykonać na populacji kilka działań, takich jak: selekcja, krzyżowanie, mutacja oraz sukcesja. W trakcie selekcji (reprodukcji) wybieramy punkty, które zostaną poddane dalszym krokom algorytmu. Krzyżowanie to akcja polegająca na wyborze pewnych określonych cech osobników się krzyżujących, które zostaną przekazane ich potomkowi. Możemy w niej decydować o stopniu danej cechy pochodzącej od konkretnego rodzica. Mutacja jest próbą wprowadzenia pewnych losowych zmian w wygenerowanym wcześniej potomku. Krok sukcesji decyduje, które osobniki z populacji przejdą do następnej generacji.
 
 ### Próbkowanie z rozkładem jednostajnym
-Rozkład jednostajny - poczakajmy odpowiednio długo, punkty w losowy w miarę równomierny sposób zapełniały dziedzinę funkcji.
+W tej metodzie czekając odpowiednio długo, punkty w losowy w miarę równomierny sposób powinny zapełniać dziedzinę funkcji.
+
+Próbkowanie z rozkładem jednostajnym jest metodą:
+  - niepoinformowaną
+  - niedeterministyczną
+  - bez modelu
+  - o zerowym rozmiarze okna historii
+  - o nielokalnym obszarze poszukiwań
+  - o nie miękkiej selekcji
+  - z zupełnością asymptotyczną
 
 
 Funkcje celu:
 -------------
-Jak mamy dwie kompletnie odmienne funkcje celu to te dwie metody będą mniej lub bardziej skuteczne.
+Korzystając z dwóch odmiennych funkcji celu powyższe metody będą prezentowamy większą lub mniejszą skuteczność, ponieważ te dwie funkcje są kompletnie inne. Pierwsza z nich jest unimodalną, natomiast druga już nie.
 
 ### Funkcja sferyczna
-Unimodalna sferyczna jedno minimum - to strategia kiedy poruszamy się po największym zboczu jest najbardziej skuteczna, najbardziej goni do celu. 
+W funkcji unimodalnej, jaką jest funkcja sferyczna, występuje jedno minimum lokalne i jest ono minimum globalnym. Przez to strategia, kiedy poruszamy się po największym zboczu(np. algorytm wspinaczkowy) będzie bardziej skuteczna. Najlepiej doprowadzi nas do celu do celu. 
 
+#### Wykres
 ![Funkcja sferyczna][1]
-![Minimum funkcji sferycznej][2]
-![Dziedzina funkcji sferycznej][3]
+
+#### Formuła
 ![Formuła funkcji sferycznej][4]
 
+#### Minimum
+![Minimum funkcji sferycznej][2]
+
+#### Dziedzina
+![Dziedzina funkcji sferycznej][3]
+
 ### Funkcja "eggholder"
-Eggholder - biedny punkcik trafi w dół lejka i stamtąd nie wyjdzie
+W tej funkcji istnieje wiele minimów lokalnych. Przez co możemy mieć problem, kiedy punkt wpadnie w złe minimum i nie będzie mógł z niego wyjść.
 
+#### Wykres
 ![Funkcja eggholder][5]
-![Minimum funkcji eggholder][6]
-![Dziedzina funkcji eggholder][7]
+#### Formuła
 ![Formuła funkcji eggholder][8]
+#### Minimum
+![Minimum funkcji eggholder][6]
+#### Dziedzina
+![Dziedzina funkcji eggholder][7]
+#### Alternatywny wykres
 ![Funkcja eggholder w realnym świecie][9]
-
-Wnioski. To jest cały projekt. Patrząc na wykresy można sobie uzmysłowić, że algorytm ewolucyjny widać mutacje populacja skacze.
-
-Roboczo budźet - liczba iteracji - nie. maksymalna liczba obliczeń funkcji celu. jakość Dokładność błąd mminimalizacji. 20 razy dla każdego budźetu każdą z metod. Jak zwiększając budźe poprawia nam się wynik. 
-
-jedna populacyjna, druga jest jednym punktem. 
 
 [1]: sphere_function.jpg "Funkcja sferyczna"
 [2]: sphere_minimum.png "Minimum funkcji sferycznej"
