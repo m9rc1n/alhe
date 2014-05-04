@@ -57,7 +57,7 @@ Funkcje celu:
 Korzystając z dwóch odmiennych funkcji celu powyższe metody będą prezentowamy większą lub mniejszą skuteczność, ponieważ te dwie funkcje są kompletnie inne. Pierwsza z nich jest unimodalną, natomiast druga już nie.
 
 ### Funkcja sferyczna
-W funkcji unimodalnej, jaką jest funkcja sferyczna, występuje jedno minimum lokalne i jest ono minimum globalnym. Przez to strategia, kiedy poruszamy się po największym zboczu(np. algorytm wspinaczkowy) będzie bardziej skuteczna. Najlepiej doprowadzi nas do celu do celu. 
+W funkcji unimodalnej, jaką jest funkcja sferyczna, występuje jedno minimum lokalne i jest ono minimum globalnym. Przez to strategia, kiedy poruszamy się po największym zboczu(np. algorytm wspinaczkowy) będzie bardziej skuteczna.. 
 
 #### Wykres
 ![Funkcja sferyczna][1]
@@ -72,7 +72,7 @@ W funkcji unimodalnej, jaką jest funkcja sferyczna, występuje jedno minimum lo
 ![Dziedzina funkcji sferycznej][3]
 
 ### Funkcja "eggholder"
-W tej funkcji istnieje wiele minimów lokalnych. Przez co możemy mieć problem, kiedy punkt wpadnie w złe minimum i nie będzie mógł z niego wyjść.
+W tej funkcji istnieje wiele minimów lokalnych. Przez pojawia się problem, kiedy punkt wpadnie w złe minimum i nie będzie mógł z niego wyjść. Według artykułu [a.1] jest to trudna funkcja do zoptymalizowania. 
 
 #### Wykres
 ![Funkcja eggholder][5]
@@ -85,13 +85,19 @@ W tej funkcji istnieje wiele minimów lokalnych. Przez co możemy mieć problem,
 #### Alternatywny wykres
 ![Funkcja eggholder w realnym świecie][9]
 
-[1]: sphere_function.jpg "Funkcja sferyczna"
-[2]: sphere_minimum.png "Minimum funkcji sferycznej"
-[3]: sphere_domain.png "Dziedzina funkcji sferycznej"
-[4]: sphere_formula.png "Formuła funkcji sferycznej"
+Bibliografia:
+------------
+[a.1] _Some new test functions for global optimization and performance of repulsive particle swarm method_ Mishra, Sudhanshu
 
-[5]: eggholder_function.jpg "Funkcja eggholder"
-[6]: eggholder_minimum.png "Minimum funkcji eggholder"
-[7]: eggholder_domain.png "Dziedzina funkcji eggholder"
-[8]: eggholder_formula.png "Formuła funkcji eggholder"
-[9]: eggholder_real.jpg "Funkcja eggholder w realnym świecie"
+[n.2] _Test functions for optimization_ http://en.wikipedia.org/wiki/Test_functions_for_optimization
+
+[1]: pictures/sphere_function.jpg "Funkcja sferyczna"
+[2]: pictures/sphere_minimum.png "Minimum funkcji sferycznej"
+[3]: pictures/sphere_domain.png "Dziedzina funkcji sferycznej"
+[4]: pictures/sphere_formula.png "Formuła funkcji sferycznej"
+
+[5]: pictures/eggholder_function.jpg "Funkcja eggholder"
+[6]: pictures/eggholder_minimum.png "Minimum funkcji eggholder"
+[7]: pictures/eggholder_domain.png "Dziedzina funkcji eggholder"
+[8]: pictures/eggholder_formula.png "Formuła funkcji eggholder"
+[9]: pictures/eggholder_real.jpg "Funkcja eggholder w realnym świecie"
