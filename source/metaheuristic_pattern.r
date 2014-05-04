@@ -88,7 +88,7 @@ historyPop<-function(history, number)
 evaluateList<-function(points,evaluation)
 {
   for (i in 1:length(points))
-    points[[i]]$quality<-evaluation(points[[i]]$coordinates)
+    points[]$quality<-evaluation(points[]$coordinates)
   return (points) 
 }
 

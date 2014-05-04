@@ -10,22 +10,19 @@
 
 #### TO BE DEFINED BY THE USER
 
-#selection of a LIST of points from the history
-#to be defined
-selection<-function(history)
-{
-  #select a number of points from the history using the 
-  #method's parameters and the current state of the model
-  return(selectedPoints)
-}
-
 #generation of a LIST of new points
 #to be defined
-variation<-function(selectedPoint)
+ud.selection<-function(history, point)
 {
-  selectedPoint$coordinates$x <- runif(1)*1024-512
-  selectedPoint$coordinates$y <- runif(1)*1024-512
-  return (selectedPoint)
+  if(point$quality < history$quality) { return(point) } 
+  else { return(history) }
+}
+
+ud.variation<-function(point)
+{
+  point$x <- runif(1)*1024-512
+  point$y <- runif(1)*1024-512
+  return (point)
 }
 
 #####  THE METAHEURISTIC "ENGINE"
@@ -35,63 +32,52 @@ variation<-function(selectedPoint)
 #a termination condition, an initialization procedure
 #and an evaluation procedure.
 #The result is the history of the run
-metaheuristicRun<-function(initialization, startPoint, termination, evaluation)
+ud.metaheuristicRun<-function(initialization, termination, evaluation)
 {
-  history<-initialization(startPoint)
-  #history<-evaluateList(history)
-  while (!termination(history))
+  history<-initialization()
+  point<-ud.evaluateList(history, evaluation)
+  while (!termination(point))
   {
-    newPoint<-variation()
-    #newPoint<-evaluateList(newPoint, evaluation)
-    history<-historyPush(history, newPoint)
+    point<-ud.variation(point)
+    point<-ud.evaluateList(point, evaluation)
+    history<-ud.selection(history, point)
   }
   return(history)
 }
 
-#push a LIST of points into the history
-historyPush<-function(oldHistory, newPoint)
+#evaluate a LIST of points
+ud.evaluateList<-function(point, evaluation)
 {
-  newHistory<-c(oldHistory,newPoint)
+  point$i<-point$i+1
+  point$quality<-evaluation(point)
+  return(point)
+}
+
+ud.initialization<-function()
+{
+  x <- runif(1)*1024-512
+  y <- runif(1)*1024-512
+  quality <- 1000000.0
+  i <- 0
+  return (data.frame(x=x, y=y, quality=quality, i=i))
+}
+
+#push a LIST of points into the history
+ud.historyPush<-function(oldHistory, newPoints)
+{
+  newHistory<-c(oldHistory,newPoints)
   return (newHistory)
 }
 
 #read a LIST of points pushed recently into the history
-historyPop<-function(history, number)
+ud.historyPop<-function(history, number)
 {
   stop=length(history)
   start=max(stop-number+1,1)
   return(history[start:stop])
 }
 
-#evaluate a LIST of points
-evaluateList<-function(point, evaluation)
-{
-  point$quality<-evaluation(point$coords)
-  return(point)
-}
-
-initialization<-function(startPoint)
-{
-  startPoint$coordinates$x <- runif(1)*1024-512
-  startPoint$coordinates$y <- runif(1)*1024-512
-  return (startPoint)
-}
-
-termination<-function(history)
-{
-  if (history$quality < 0.01) { return (F) } 
-  else { return (T) }
-}
-
-x <- 1
-y <- 1
-
-evaluation<-function(history)
-{
-  sphereFunction(history)
-}
-
-metaheuristicRun(initialization, xy.coords(x, y), termination, evaluation)
+ud.metaheuristicRun(ud.initialization, sphere.termination, sphere.function)
 
 ####  THAT'S ALL FOLKS
 

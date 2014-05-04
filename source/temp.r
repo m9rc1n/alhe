@@ -1,9 +1,9 @@
-sphereFunction<-function(coordinates)
+sphere.function<-function(coords)
 {
-  return(coordinates$x^2 + coordinates$y^2)
+  return(coords$x^2 + coords$y^2)
 }
 
-eggHolderFunction<-function(coordinates)
+egg.function<-function(coordinates)
 {
   x = coordinates$x
   y = coordinates$y
@@ -12,50 +12,9 @@ eggHolderFunction<-function(coordinates)
   return(remaind-remainder)
 }
 
-F<-2144
-
-uniformMethodEggHolder<-function()
+sphere.termination<-function(point)
 {
-  while (F>-959.6)
-  {
-    x <- runif(1)*1024-512
-    y <- runif(1)*1024-512
-    minimum = eggHolderFunction(x, y)  
-    if (minimum < F)
-    {
-      print("x= ")
-      print(x)
-      print("y= ")
-      print(y)
-      print(minimum)
-      F = minimum
-    }
-  }
-  return(F)
+  point
+  if (point$i < 100000) { return (F) } 
+  else { return (T) }
 }
-
-Fxy<-2144
-
-uniformMethodSphere<-function()
-{
-  while (Fxy>0.001)
-  {
-    x <- runif(1)*10-5
-    y <- runif(1)*10-5
-    minimum = sphereFunction(x, y)  
-    if (minimum < Fxy)
-    {
-      print("x= ")
-      print(x)
-      print("y= ")
-      print(y)
-      print(minimum)
-      Fxy = minimum
-    }
-  }
-  return(Fxy)
-}
-
-
-uniformMethodSphere()
-
