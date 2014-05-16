@@ -85,6 +85,13 @@ W tej funkcji istnieje wiele minimów lokalnych. Przez pojawia się problem, kie
 #### Alternatywny wykres
 ![Funkcja eggholder w realnym świecie][9]
 
+
+Przebieg eksperymentu:
+----------------------
+Pierwszą metodą, którą będziemy badać to strategia ewolucyjna. W procesie selekcji oraz mutacji otrzymamy minimum funkcji. Podobnie samo stanie się w przypadku użycia próbkowania z rozkładem jednostajnym - tam również otrzymamy to minimum. W obydwu przypadkach przedstawimy ścieżkę dosjścia do minimum (tj. w jakiej kolejności losowały się punkty). Kolejnym krokiem analizy będzie sprawdzenie w ilu iteracjach strategii/próbkowaniu uzyskujemy minimum (jak szybko do niego zbiegamy) oraz zestawienie tych danych na wykresach w celu porównania metod. Zbadać można będzie również wpływ punktu startowego dla startegii ewolucyjnej na szybkośc zbiegania do minimum.
+
+Takie same badania przeporwadzimy na funkcji sferycznej. Dzięki czemu będziemy w stanie porównać która z metod jest lepsza i w jakim stopniu (przy jakich parametrach).
+
 Bibliografia:
 ------------
 [a.1] _Some new test functions for global optimization and performance of repulsive particle swarm method_ Mishra, Sudhanshu
