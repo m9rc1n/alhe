@@ -85,7 +85,8 @@ ga.startPoints<-function(mi)
     startPoints$y[i]<-runif(1, -512, 512)
     startPoints$sigma_x[i]<-0.2
     startPoints$sigma_y[i]<-0.2
-    startPoints$minimum[i]<-100.0
+    startPoints$minimum[i]<-1000.0
+    startPoints$best_minimum[i]<-1000.0
   }
   return (startPoints)
 }
@@ -103,24 +104,21 @@ ga.metaheuristicRun<-function(initialization, startPoints, termination, evaluati
   o<-data.frame(sigma_x=numeric(lambda), sigma_y=numeric(lambda), x=numeric(lambda), y=numeric(lambda), minimum=numeric(lambda))
   while (!termination(i, n))
   {
-    for(j in 1:lambda)
+    a<-runif(1)
+    if(a<pc)
     {
-      a<-runif(1)
-      if(a<pc)
-      {
-        temp <- ga.mutation(ga.crossover(ga.select(p), ga.select(p)))
-      }
-      else
-      {  
-        temp <- ga.mutation(ga.select(p)) 
-      }
-      temp<-common.evaluate(temp, evaluation)
-      temp<-common.selection(i-1, temp, history)
-      history<-common.historyPush(i, temp[3:8], history)
-      o[j,]<-temp[1:5]
+      temp <- ga.mutation(ga.crossover(ga.select(p), ga.select(p)))
     }
-    p <- ga.replacement(p, o)
+    else
+    {  
+      temp <- ga.mutation(ga.select(p)) 
+    }
+    temp<-common.evaluate(temp, evaluation)
+    temp<-common.selection(i-1, temp, history)
+    history<-common.historyPush(i, temp[3:8], history)
+    o[i%%lambda+1,]<-temp[1:5]
     i<-i+1
+    if (i%%lambda == 1) p <- ga.replacement(p, o)
   }
   return(history)
 }
@@ -197,7 +195,7 @@ common.evaluate<-function(point, evaluation)
 common.selection<-function(i, point, history)
 {
   len<-max(i, 1)
-  if(point$minimum<history$best_minimum[len]) 
+  if(len == 1 || point$minimum<history$best_minimum[len]) 
   {
     point$best_x<-point$x
     point$best_y<-point$y
@@ -255,15 +253,15 @@ sphere.function<-function(x, y)
 library(ggplot2)
 
 mi<-10
-lambda<-15
+lambda<-30
 prawdopodobienstwo_kopulacji<-0.1
-n<-1000
+n<-10000
 
 startPoints <- ga.startPoints(mi)
-history<-ga.metaheuristicRun(ga.initialization, startPoints, common.termination, sphere.function, mi, lambda, prawdopodobienstwo_kopulacji, n)
+history<-ga.metaheuristicRun(ga.initialization, startPoints, common.termination, egg.function, mi, lambda, prawdopodobienstwo_kopulacji, n)
 print(qplot(seq_along(history$best_minimum), history$best_minimum, data=history))
-print(common.historyPop(history, 20))
+print(common.historyPop(history, 10))
 
-history<-ud.metaheuristicRun(ud.initialization, common.termination, sphere.function, 3000)
-print(qplot(seq_along(history$best_minimum), history$best_minimum, data=history))
-common.historyPop(history, 20)
+#history<-ud.metaheuristicRun(ud.initialization, common.termination, egg.function, 3000)
+#print(qplot(seq_along(history$best_minimum), history$best_minimum, data=history))
+#common.historyPop(history, 20)
