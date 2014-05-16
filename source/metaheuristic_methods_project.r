@@ -260,9 +260,9 @@ prawdopodobienstwo_kopulacji<-0.1
 n<-1000
 
 startPoints <- ga.startPoints(mi)
-#history<-ga.metaheuristicRun(ga.initialization, startPoints, common.termination, egg.function, mi, lambda, prawdopodobienstwo_kopulacji, n)
-#print(qplot(seq_along(history$best_minimum), history$best_minimum, data=history))
-#print(common.historyPop(history, 20))
+history<-ga.metaheuristicRun(ga.initialization, startPoints, common.termination, sphere.function, mi, lambda, prawdopodobienstwo_kopulacji, n)
+print(qplot(seq_along(history$best_minimum), history$best_minimum, data=history))
+print(common.historyPop(history, 20))
 
 history<-ud.metaheuristicRun(ud.initialization, common.termination, sphere.function, 3000)
 print(qplot(seq_along(history$best_minimum), history$best_minimum, data=history))
