@@ -58,7 +58,7 @@ aggregatedOperator<-function(history, oldModel)
 metaheuristicRun<-function(initialization, startPoints, termination, evaluation)
 {
   history<-initialization(startPoints)
-  history<-evaluateList(history)
+  history<-evaluateList(history, evaluation)
   model<-initModel(history)
   while (!termination(history,model))
   {
